@@ -164,8 +164,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     </div>
   </div>
   <div class="topbar-right">
-    <button class="btn btn-ghost" onclick="window.print()">⎙ Imprimir</button>
-    <button class="btn btn-ghost" onclick="exportHTML()">⬇ Exportar</button>
+    <button class="btn btn-ghost" onclick="exportExcel()">⬇ Exportar Excel</button>
     <button class="btn btn-red" onclick="openTaskModal(null)">+ Nueva tarea</button>
   </div>
 </div>
@@ -278,6 +277,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 // ── Timezone-safe ──────────────────────────────────────────────────────────
 function parseDate(s) {
@@ -583,15 +583,35 @@ function showToast(msg) {
 }
 
 // ── Export ─────────────────────────────────────────────────────────────────
-function exportHTML() {
-  let src = document.documentElement.outerHTML;
-  src = src.replace(/let platforms = \{[\s\S]*?\};/, 'let platforms = ' + JSON.stringify(platforms) + ';');
-  src = src.replace(/let tasks = \[[\s\S]*?\];/, 'let tasks = ' + JSON.stringify(tasks) + ';');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([src],{type:'text/html'}));
-  a.download = 'roadmap-cid-vt.html';
-  a.click();
-  showToast('⬇ Archivo exportado');
+function exportExcel() {
+  // Hoja 1: Tareas
+  const tareaRows = tasks.map(t => ({
+    'Plataforma':        t.plat,
+    'Tipo':              t.type === 'demo' ? 'Entrega Demo' : 'Subida FW/DWH',
+    'Comentario':        t.c || '',
+    'Importancia':       t.imp || '',
+    'Fecha de entrega':  t.due || '',
+  }));
+
+  // Hoja 2: Plataformas
+  const platRows = Object.entries(platforms).map(([name, cfg]) => ({
+    'Plataforma':               name,
+    'Fecha entrega proyecto':   cfg.due || '',
+    'Color':                    cfg.color,
+  }));
+
+  const wb = XLSX.utils.book_new();
+  const wsTareas = XLSX.utils.json_to_sheet(tareaRows);
+  const wsPlats  = XLSX.utils.json_to_sheet(platRows);
+
+  // Anchos de columna
+  wsTareas['!cols'] = [{ wch:28 }, { wch:18 }, { wch:40 }, { wch:12 }, { wch:16 }];
+  wsPlats['!cols']  = [{ wch:28 }, { wch:22 }, { wch:10 }];
+
+  XLSX.utils.book_append_sheet(wb, wsTareas, 'Tareas');
+  XLSX.utils.book_append_sheet(wb, wsPlats,  'Plataformas');
+  XLSX.writeFile(wb, 'roadmap-cid-vt.xlsx');
+  showToast('⬇ Excel exportado');
 }
 
 // ── Events ─────────────────────────────────────────────────────────────────
