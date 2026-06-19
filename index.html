@@ -484,15 +484,28 @@ function renderGantt() {
   document.getElementById('gantt-body').innerHTML = html;
 }
 
+
+// ── Persistencia localStorage ──────────────────────────────────────────────
+function saveState() {
+  try {
+    localStorage.setItem('gantt_tasks',     JSON.stringify(tasks));
+    localStorage.setItem('gantt_platforms', JSON.stringify(platforms));
+  } catch(e) { console.warn('localStorage no disponible', e); }
+}
+function loadState() {
+  try {
+    const t = localStorage.getItem('gantt_tasks');
+    const p = localStorage.getItem('gantt_platforms');
+    if (t) { tasks = JSON.parse(t); nextId = Math.max(...tasks.map(x=>x.id), 12) + 1; }
+    if (p) { platforms = JSON.parse(p); }
+  } catch(e) { console.warn('Error cargando estado', e); }
+}
 function syncPlatforms() {
-  // Asegura que toda plataforma referenciada en tasks exista en platforms
   tasks.forEach(t => {
-    if (!platforms[t.plat]) {
-      platforms[t.plat] = { due: null, color: t.color };
-    }
+    if (!platforms[t.plat]) platforms[t.plat] = { due: null, color: t.color };
   });
 }
-function renderAll() { syncPlatforms(); renderKPIs(); renderGantt(); }
+function renderAll() { syncPlatforms(); saveState(); renderKPIs(); renderGantt(); }
 
 // ── Filter ─────────────────────────────────────────────────────────────────
 function setFilter(f, el) {
@@ -629,6 +642,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeTaskModal()
 
 // ── Init ───────────────────────────────────────────────────────────────────
 document.getElementById('footer-date').textContent = 'Actualizado: ' + fmtLong(TODAY_STR);
+loadState();
 syncPlatforms();
 renderKPIs();
 renderDateHeader();
