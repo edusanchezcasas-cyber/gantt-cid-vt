@@ -15,10 +15,9 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;}
 
-/* TOPBAR */
 .topbar{background:var(--navy);padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 16px rgba(4,36,51,0.2);}
 .brand{display:flex;align-items:center;gap:12px;}
-.brand-mark{width:36px;height:36px;border-radius:7px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:-0.5px;flex-shrink:0;}
+.brand-mark{width:36px;height:36px;border-radius:7px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
 .brand-name{font-size:14px;font-weight:600;color:#fff;}
 .brand-sub{font-size:11px;color:rgba(255,255,255,0.4);}
 .topbar-right{display:flex;align-items:center;gap:8px;}
@@ -27,92 +26,131 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .btn-ghost:hover{background:rgba(255,255,255,0.1);color:#fff;}
 .btn-red{background:var(--red);color:#fff;}
 .btn-red:hover{background:var(--red-dark);}
-.btn-navy{background:var(--navy-mid);color:#fff;}
+.btn-navy{background:var(--navy-mid);color:#fff;border:none;}
 .btn-navy:hover{background:var(--navy-light);}
-.btn-sm{padding:5px 12px;font-size:11px;border-radius:6px;}
+.btn-sm{padding:6px 14px;font-size:12px;border-radius:6px;}
 .btn-outline{background:#fff;color:var(--text-2);border:1px solid var(--border);}
 .btn-outline:hover{background:var(--bg);}
+.btn-danger{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;}
+.btn-danger:hover{background:#fecaca;}
 
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);padding:40px 32px 32px;position:relative;overflow:hidden;}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);padding:16px 32px 14px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
-.hero-inner{position:relative;max-width:960px;}
-.hero-eyebrow{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
-.hero-title{font-size:26px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:6px;}
+.hero-inner{position:relative;max-width:960px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.hero-left{}
+.hero-eyebrow{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
+.hero-title{font-size:18px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:0;}
 .hero-title span{color:var(--gold);}
-.hero-desc{font-size:13px;color:rgba(255,255,255,0.5);max-width:500px;line-height:1.6;margin-bottom:22px;}
-.kpi-row{display:flex;gap:12px;flex-wrap:wrap;}
-.kpi{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r);padding:11px 18px;min-width:120px;}
-.kpi-val{font-size:24px;font-weight:700;color:#fff;line-height:1;}
-.kpi-label{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px;}
+.hero-desc{display:none;}
+.kpi-row{display:flex;gap:8px;flex-wrap:wrap;}
+.kpi{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r);padding:7px 14px;min-width:90px;}
+.kpi-val{font-size:18px;font-weight:700;color:#fff;line-height:1;}
+.kpi-label{font-size:10px;color:rgba(255,255,255,0.45);margin-top:2px;}
 
-/* MAIN */
 .content{max-width:1100px;margin:0 auto;padding:28px 32px 60px;}
 
-/* FILTER BAR */
 .filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 16px;margin-bottom:20px;}
 .filter-label{font-size:11px;color:var(--text-3);font-weight:500;}
 .fc{padding:4px 12px;border-radius:14px;font-size:11px;font-weight:500;border:1px solid var(--border);background:var(--bg);color:var(--text-2);cursor:pointer;transition:all 0.12s;}
 .fc:hover,.fc.on{background:var(--navy);color:#fff;border-color:var(--navy);}
 .sep{width:1px;height:18px;background:var(--border);}
 
-/* LEGEND */
 .legend-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
 .leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-2);}
-.leg-solid{width:22px;height:9px;border-radius:2px;}
+.leg-solid{width:22px;height:9px;border-radius:2px;background:#378ADD;}
 .leg-dash{width:22px;height:9px;border-radius:2px;border:2px dashed #888;background:transparent;}
 .leg-today-bar{width:3px;height:14px;background:var(--today);border-radius:2px;}
+.leg-diamond{width:10px;height:10px;border-radius:2px;background:var(--navy);transform:rotate(45deg);}
 
-/* GANTT CARD */
-.gantt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
-.gc-header{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:210px 62px 1fr;gap:10px;background:#fafbfc;}
+.gantt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.06);margin-bottom:12px;}
+.gc-header{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:230px 62px 1fr 36px;gap:10px;background:#fafbfc;}
 .gc-col{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.7px;}
-.date-hdr{padding:4px 20px 0;display:grid;grid-template-columns:210px 62px 1fr;gap:10px;background:#fafbfc;border-bottom:1px solid var(--border);}
+.date-hdr{padding:4px 20px 0;display:grid;grid-template-columns:230px 62px 1fr 36px;gap:10px;background:#fafbfc;border-bottom:1px solid var(--border);}
 .date-tl{position:relative;height:20px;}
 .dlbl{position:absolute;font-size:9px;color:var(--text-3);transform:translateX(-50%);bottom:3px;white-space:nowrap;}
 
-/* ROWS */
-.g-row{display:grid;grid-template-columns:210px 62px 1fr;gap:10px;align-items:center;padding:0 20px;min-height:56px;border-bottom:1px solid #f3f4f6;transition:background 0.1s;cursor:pointer;}
-.g-row:last-child{border-bottom:none;}
+/* Header de grupo de plataforma */
+.plat-group-header{
+  display:grid;grid-template-columns:230px 62px 1fr 36px;gap:10px;
+  align-items:center;padding:8px 20px;
+  background:#f0f4f8;border-bottom:1px solid #dde3ea;
+  border-top:2px solid transparent;
+}
+.plat-group-header:first-child{border-top:none;}
+.plat-group-left{display:flex;flex-direction:column;gap:2px;}
+.plat-group-name{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.plat-color-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.plat-due{font-size:11px;color:var(--text-2);display:flex;align-items:center;gap:4px;padding-left:18px;margin-top:1px;}
+.plat-due-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#fff;border:1px solid var(--border);
+  padding:2px 8px;border-radius:8px;
+  font-size:11px;font-weight:600;color:var(--text-2);
+}
+.plat-due-badge.vencida{background:#fef2f2;border-color:#fca5a5;color:#b91c1c;}
+.plat-due-badge.proxima{background:#fefce8;border-color:#fde68a;color:#92400e;}
+.plat-due-badge.ok{background:#f0fdf4;border-color:#86efac;color:#166534;}
+.btn-edit-plat{
+  padding:3px 8px;border-radius:6px;font-size:10px;font-weight:500;
+  border:1px solid var(--border);background:#fff;color:var(--text-3);
+  cursor:pointer;transition:all 0.12s;white-space:nowrap;
+}
+.btn-edit-plat:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* Línea de entrega en el gantt */
+.deadline-line{position:absolute;top:0;bottom:0;width:2px;z-index:7;border-left:2px dashed var(--navy);opacity:0.6;}
+.deadline-flag{position:absolute;top:2px;font-size:9px;font-weight:700;color:var(--navy);white-space:nowrap;transform:translateX(3px);opacity:0.8;}
+
+/* Filas de tarea */
+.g-row{
+  display:grid;grid-template-columns:230px 62px 1fr 36px;gap:10px;
+  align-items:center;padding:4px 20px;
+  border-bottom:1px solid #f3f4f6;
+  transition:background 0.1s;min-height:44px;
+}
 .g-row:hover{background:#f8fafc;}
-.g-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.g-comment{font-size:10px;color:var(--text-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.color-tag{display:inline-block;width:4px;height:32px;border-radius:2px;flex-shrink:0;margin-right:10px;}
+.g-row:last-child{border-bottom:none;}
+.g-type{font-size:11px;color:var(--text-2);padding-left:18px;display:flex;align-items:center;gap:5px;}
+.g-type-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.g-comment{font-size:10px;color:var(--text-3);padding-left:18px;margin-top:1px;}
+
 .badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;}
 .b-alta{background:#fef2f2;color:#b91c1c;}
 .b-baja{background:#f0fdf4;color:#166534;}
 .b-nd{background:#f9fafb;color:#9ca3af;border:1px solid #e5e7eb;}
 
-.tl{position:relative;height:46px;}
+.tl{position:relative;height:30px;}
 .tl-tick{position:absolute;top:0;bottom:0;width:0.5px;background:#eef0f3;}
-.tl-today{position:absolute;top:0;bottom:0;width:2.5px;background:var(--today);z-index:6;border-radius:2px;}
-.tl-today::after{content:'Hoy';position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;color:var(--today);white-space:nowrap;}
-.tl-bar{position:absolute;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;z-index:2;transition:opacity 0.15s;}
+.tl-today{position:absolute;top:0;bottom:0;width:2px;background:var(--today);z-index:6;border-radius:2px;}
+.tl-bar{position:absolute;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;z-index:2;height:18px;top:6px;transition:opacity 0.15s;}
 .tl-bar:hover{opacity:0.82;}
-.bar-demo{height:17px;top:5px;color:#fff;}
-.bar-fw{height:17px;top:25px;background:transparent!important;border-width:2px;border-style:dashed;}
+.bar-solid{color:#fff;}
+.bar-dashed{background:transparent!important;border-width:2px;border-style:dashed;}
 .no-date{position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-3);font-style:italic;}
 
-/* MODAL */
-.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;align-items:center;justify-content:center;}
-.backdrop.open{display:flex;}
-.modal{background:#fff;border-radius:12px;padding:24px;width:460px;max-width:95vw;box-shadow:0 12px 40px rgba(0,0,0,0.2);}
-.modal-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:18px;}
-.field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
-.field label{font-size:11px;color:var(--text-3);font-weight:500;}
-.field input,.field select{font-family:var(--font);font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:7px 10px;background:#fff;transition:border-color 0.15s;}
-.field input:focus,.field select:focus{outline:none;border-color:var(--navy);}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:6px;}
+.btn-icon{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;color:var(--text-2);transition:all 0.1s;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.btn-icon.edit:hover{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
+.btn-icon.del:hover{background:#fee2e2;color:#b91c1c;border-color:#fca5a5;}
 
-/* TOAST */
+/* MODALES */
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center;}
+.backdrop.open{display:flex;}
+.modal{background:#fff;border-radius:12px;padding:26px;width:460px;max-width:96vw;box-shadow:0 12px 40px rgba(0,0,0,0.22);max-height:90vh;overflow-y:auto;}
+.modal-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:13px;}
+.field label{font-size:10px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+.field input,.field select{font-family:var(--font);font-size:13px;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#fff;transition:border-color 0.15s;width:100%;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(10,58,82,0.08);}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-footer{display:flex;gap:8px;justify-content:space-between;margin-top:10px;padding-top:14px;border-top:1px solid var(--border);}
+.modal-footer-right{display:flex;gap:8px;}
+
 .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;font-size:12px;font-weight:500;z-index:999;opacity:0;transform:translateY(8px);transition:all 0.25s;pointer-events:none;}
 .toast.show{opacity:1;transform:translateY(0);}
 
-/* FOOTER */
 .footer{border-top:1px solid var(--border);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;background:var(--surface);font-size:11px;color:var(--text-3);}
 .footer-brand{font-weight:600;color:var(--navy);}
-@media print{.topbar,.filter-bar,.backdrop{display:none!important;}.hero{padding:16px 0;}.content{padding:12px 0;}}
+@media print{.topbar,.filter-bar{display:none!important;}.hero{padding:16px 0;}.content{padding:12px 0;}}
 </style>
 </head>
 <body>
@@ -128,15 +166,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   <div class="topbar-right">
     <button class="btn btn-ghost" onclick="window.print()">⎙ Imprimir</button>
     <button class="btn btn-ghost" onclick="exportHTML()">⬇ Exportar</button>
-    <button class="btn btn-red" onclick="openModal(null)">+ Nueva tarea</button>
+    <button class="btn btn-red" onclick="openTaskModal(null)">+ Nueva tarea</button>
   </div>
 </div>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Roadmap de plataformas · 2026</div>
-    <div class="hero-title">Plan de <span>entregas</span> CID</div>
-    <div class="hero-desc">Seguimiento de pendientes de desarrollo, integración al framework Next.js y subida al Data Warehouse para las plataformas del equipo CID.</div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Roadmap de plataformas · 2026</div>
+      <div class="hero-title">Plan de <span>entregas</span> CID</div>
+    </div>
     <div class="kpi-row" id="kpis"></div>
   </div>
 </div>
@@ -153,18 +192,24 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   </div>
 
   <div class="legend-row">
-    <div class="leg"><span class="leg-solid" style="background:#378ADD;"></span>Entrega demo</div>
+    <div class="leg"><span class="leg-solid"></span>Entrega demo</div>
     <div class="leg"><span class="leg-dash"></span>Subida a Framework / DWH</div>
     <div class="leg"><span class="leg-today-bar"></span>Hoy</div>
+    <div class="leg"><span style="display:inline-block;width:2px;height:14px;border-left:2px dashed var(--navy);opacity:0.6;"></span>Fecha entrega proyecto</div>
   </div>
 
   <div class="gantt-card">
     <div class="gc-header">
-      <span class="gc-col">Plataforma</span>
+      <span class="gc-col">Plataforma / tarea</span>
       <span class="gc-col">Prior.</span>
       <span class="gc-col">19 jun → 20 jul 2026</span>
+      <span class="gc-col"></span>
     </div>
-    <div class="date-hdr"><div></div><div></div><div class="date-tl" id="date-hdr"></div></div>
+    <div class="date-hdr">
+      <div></div><div></div>
+      <div class="date-tl" id="date-hdr"></div>
+      <div></div>
+    </div>
     <div id="gantt-body"></div>
   </div>
 </div>
@@ -174,17 +219,18 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   <span id="footer-date"></span>
 </div>
 
-<!-- MODAL -->
-<div class="backdrop" id="modal-backdrop">
+<!-- MODAL TAREA -->
+<div class="backdrop" id="task-modal-backdrop">
   <div class="modal">
-    <div class="modal-title" id="modal-title">Nueva tarea</div>
+    <div class="modal-title" id="task-modal-title">Nueva tarea</div>
     <div class="field"><label>Plataforma / proceso *</label><input id="f-name" type="text" placeholder="Ej: Tareas de gestión"></div>
-    <div class="field"><label>Comentario</label><input id="f-comment" type="text" placeholder="Ej: Mostrar cambios"></div>
     <div class="fgrid">
-      <div class="field"><label>Entrega demo</label><input id="f-d1" type="date"></div>
-      <div class="field"><label>Subida a Framework</label><input id="f-d2" type="date"></div>
-    </div>
-    <div class="fgrid">
+      <div class="field"><label>Tipo de entrega</label>
+        <select id="f-type">
+          <option value="demo">📦 Entrega demo</option>
+          <option value="fw">🚀 Subida FW/DWH</option>
+        </select>
+      </div>
       <div class="field"><label>Importancia</label>
         <select id="f-imp">
           <option value="">— sin definir —</option>
@@ -192,13 +238,40 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
           <option value="baja">Baja</option>
         </select>
       </div>
+    </div>
+    <div class="field"><label>Comentario</label><input id="f-comment" type="text" placeholder="Ej: Mostrar cambios al equipo"></div>
+    <div class="fgrid">
+      <div class="field"><label>Fecha de entrega</label><input id="f-due" type="date"></div>
       <div class="field"><label>Color de barra</label>
-        <input id="f-color" type="color" value="#378ADD" style="height:34px;padding:2px 4px;border:1px solid var(--border);border-radius:6px;cursor:pointer;width:100%;">
+        <input id="f-color" type="color" value="#378ADD" style="height:38px;padding:2px 4px;border:1px solid var(--border);border-radius:6px;cursor:pointer;">
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-navy btn-sm" onclick="saveTask()">Guardar</button>
+      <button class="btn btn-danger btn-sm" id="task-btn-delete" onclick="deleteEditingTask()" style="display:none;">🗑 Eliminar</button>
+      <div class="modal-footer-right">
+        <button class="btn btn-outline btn-sm" onclick="closeTaskModal()">Cancelar</button>
+        <button class="btn btn-navy btn-sm" onclick="saveTask()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PLATAFORMA (fecha entrega proyecto) -->
+<div class="backdrop" id="plat-modal-backdrop">
+  <div class="modal">
+    <div class="modal-title" id="plat-modal-title">Editar plataforma</div>
+    <div class="field"><label>Nombre de plataforma</label><input id="pf-name" type="text" readonly style="background:#f8f9fb;color:var(--text-3);"></div>
+    <div class="field">
+      <label>📅 Fecha de entrega del proyecto</label>
+      <input id="pf-due" type="date">
+      <span style="font-size:10px;color:var(--text-3);margin-top:3px;">Se muestra como línea vertical en el Gantt y badge en el encabezado.</span>
+    </div>
+    <div class="modal-footer">
+      <div></div>
+      <div class="modal-footer-right">
+        <button class="btn btn-outline btn-sm" onclick="closePlatModal()">Cancelar</button>
+        <button class="btn btn-navy btn-sm" onclick="savePlatDue()">Guardar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -206,7 +279,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Timezone-safe date parsing ──────────────────────────────────────────────
+// ── Timezone-safe ──────────────────────────────────────────────────────────
 function parseDate(s) {
   if (!s) return null;
   const [y,m,d] = s.split('-').map(Number);
@@ -214,17 +287,15 @@ function parseDate(s) {
 }
 function fmtShort(s) {
   if (!s) return '';
-  const d = parseDate(s);
-  return d.toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
+  return parseDate(s).toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
 }
 function fmtLong(s) {
   if (!s) return '';
-  const d = parseDate(s);
-  return d.toLocaleDateString('es-PE', { day:'2-digit', month:'long', year:'numeric' });
+  return parseDate(s).toLocaleDateString('es-PE', { day:'2-digit', month:'long', year:'numeric' });
 }
 
-const S_STR = '2026-06-19';
-const E_STR = '2026-07-20';
+const S_STR     = '2026-06-19';
+const E_STR     = '2026-07-20';
 const TODAY_STR = '2026-06-19';
 const S = parseDate(S_STR);
 const E = parseDate(E_STR);
@@ -232,106 +303,190 @@ const TOTAL = (E - S) / 86400000;
 
 function pct(s) {
   if (!s) return null;
-  const d = parseDate(s);
-  return Math.max(0, Math.min(100, ((d - S) / 86400000 / TOTAL) * 100));
+  return Math.max(0, Math.min(100, ((parseDate(s) - S) / 86400000 / TOTAL) * 100));
 }
 
-// ── Data ───────────────────────────────────────────────────────────────────
+function dueBadgeClass(s) {
+  if (!s) return '';
+  const diff = (parseDate(s) - parseDate(TODAY_STR)) / 86400000;
+  if (diff < 0)  return 'vencida';
+  if (diff <= 5) return 'proxima';
+  return 'ok';
+}
+
+// ── Plataformas (fecha entrega a nivel proyecto) ───────────────────────────
+let platforms = {
+  'Tareas de gestión':        { due: '2026-07-03', color: '#378ADD' },
+  'Audiencias':               { due: '2026-07-08', color: '#1D9E75' },
+  'Centro de reportes':       { due: '2026-07-08', color: '#7F77DD' },
+  'Homologación':             { due: '2026-07-17', color: '#D85A30' },
+  'CEJ mov. suprema':         { due: null,          color: '#BA7517' },
+  'EJE':                      { due: null,          color: '#D4537E' },
+  'Búsqueda proc. suprema':   { due: '2026-06-29', color: '#639922' },
+  'CEJ movimientos':          { due: null,          color: '#888780' },
+};
+
+// ── Tareas individuales ────────────────────────────────────────────────────
 let tasks = [
-  { id:1, p:'Tareas de gestión',      c:'Mostrar cambios',               imp:'alta', d1:'2026-06-23', d2:'2026-07-03', color:'#378ADD' },
-  { id:2, p:'Audiencias',             c:'Mostrar cambios',               imp:'alta', d1:'2026-06-26', d2:'2026-07-08', color:'#1D9E75' },
-  { id:3, p:'Centro de reportes',     c:'Subir al framework',            imp:'alta', d1:'2026-06-26', d2:'2026-07-08', color:'#7F77DD' },
-  { id:4, p:'Homologación',           c:'Subir al framework',            imp:'alta', d1:'2026-06-30', d2:'2026-07-17', color:'#D85A30' },
-  { id:5, p:'CEJ mov. suprema',       c:'Sacar a plataforma + tokens IA',imp:'baja', d1:'2026-07-13', d2:null,         color:'#BA7517' },
-  { id:6, p:'EJE',                    c:'Sacar a plataforma + tokens IA',imp:'baja', d1:'2026-07-13', d2:null,         color:'#D4537E' },
-  { id:7, p:'Búsqueda proc. suprema', c:'Seguimiento creación (Mario)',  imp:'alta', d1:'2026-06-29', d2:null,         color:'#639922' },
-  { id:8, p:'CEJ movimientos',        c:'Creación DWH',                  imp:null,   d1:null,          d2:null,         color:'#888780' },
+  { id:1,  plat:'Tareas de gestión',      type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-23', color:'#378ADD' },
+  { id:2,  plat:'Tareas de gestión',      type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-03', color:'#378ADD' },
+  { id:3,  plat:'Audiencias',             type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-26', color:'#1D9E75' },
+  { id:4,  plat:'Audiencias',             type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#1D9E75' },
+  { id:5,  plat:'Centro de reportes',     type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-26', color:'#7F77DD' },
+  { id:6,  plat:'Centro de reportes',     type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#7F77DD' },
+  { id:7,  plat:'Homologación',           type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-30', color:'#D85A30' },
+  { id:8,  plat:'Homologación',           type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-17', color:'#D85A30' },
+  { id:9,  plat:'CEJ mov. suprema',       type:'demo', c:'Sacar a plataforma + tokens IA',imp:'baja', due:'2026-07-13', color:'#BA7517' },
+  { id:10, plat:'EJE',                    type:'demo', c:'Sacar a plataforma + tokens IA',imp:'baja', due:'2026-07-13', color:'#D4537E' },
+  { id:11, plat:'Búsqueda proc. suprema', type:'demo', c:'Seguimiento creación (Mario)',  imp:'alta', due:'2026-06-29', color:'#639922' },
+  { id:12, plat:'CEJ movimientos',        type:'fw',   c:'Creación DWH',                  imp:null,   due:null,         color:'#888780' },
 ];
-let nextId = 9;
-let editingId = null;
+let nextId = 13;
+let editingTaskId = null;
+let editingPlatName = null;
 let activeFilter = 'all';
 
-// ── KPIs ──────────────────────────────────────────────────────────────────
+// ── KPIs ───────────────────────────────────────────────────────────────────
 function renderKPIs() {
-  const total    = tasks.length;
-  const conDemo  = tasks.filter(t=>t.d1).length;
-  const conFW    = tasks.filter(t=>t.d2).length;
+  const plats    = Object.keys(platforms).length;
+  const conDemo  = [...new Set(tasks.filter(t=>t.type==='demo'&&t.due).map(t=>t.plat))].length;
+  const conFW    = [...new Set(tasks.filter(t=>t.type==='fw'&&t.due).map(t=>t.plat))].length;
   const alta     = tasks.filter(t=>t.imp==='alta').length;
   const proximas = tasks.filter(t=>{
-    if (!t.d1) return false;
-    const diff = (parseDate(t.d1) - parseDate(TODAY_STR)) / 86400000;
+    if (!t.due) return false;
+    const diff = (parseDate(t.due) - parseDate(TODAY_STR)) / 86400000;
     return diff >= 0 && diff <= 7;
   }).length;
   document.getElementById('kpis').innerHTML = `
-    <div class="kpi"><div class="kpi-val">${total}</div><div class="kpi-label">Plataformas</div></div>
+    <div class="kpi"><div class="kpi-val">${plats}</div><div class="kpi-label">Plataformas</div></div>
     <div class="kpi"><div class="kpi-val" style="color:#6ee7b7;">${conDemo}</div><div class="kpi-label">Con entrega demo</div></div>
     <div class="kpi"><div class="kpi-val" style="color:#93c5fd;">${conFW}</div><div class="kpi-label">Con subida FW</div></div>
-    <div class="kpi"><div class="kpi-val" style="color:#fca5a5;">${alta}</div><div class="kpi-label">Alta prioridad</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:#fca5a5;">${alta}</div><div class="kpi-label">Tareas alta prior.</div></div>
     <div class="kpi"><div class="kpi-val" style="color:#fcd34d;">${proximas}</div><div class="kpi-label">Esta semana</div></div>
   `;
 }
 
-// ── Date header ───────────────────────────────────────────────────────────
+// ── Date header ────────────────────────────────────────────────────────────
 function renderDateHeader() {
   const marks = [];
   let cur = new Date(S);
-  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime() + 7*86400000); }
+  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime()+7*86400000); }
   if (marks[marks.length-1] !== E_STR) marks.push(E_STR);
-  document.getElementById('date-hdr').innerHTML = marks.map(m =>
+  document.getElementById('date-hdr').innerHTML = marks.map(m=>
     `<span class="dlbl" style="left:${pct(m)}%">${fmtShort(m)}</span>`
   ).join('');
 }
 
-// ── Gantt ─────────────────────────────────────────────────────────────────
+// ── Gantt ──────────────────────────────────────────────────────────────────
+function getFiltered() {
+  if (activeFilter==='alta')     return tasks.filter(t=>t.imp==='alta');
+  if (activeFilter==='baja')     return tasks.filter(t=>t.imp==='baja');
+  if (activeFilter==='sin-demo') return tasks.filter(t=>t.type==='demo'&&!t.due);
+  if (activeFilter==='sin-fw')   return tasks.filter(t=>t.type==='fw'&&!t.due);
+  return tasks;
+}
+
 function renderGantt() {
-  let filtered = tasks;
-  if (activeFilter==='alta')     filtered = tasks.filter(t=>t.imp==='alta');
-  else if (activeFilter==='baja')     filtered = tasks.filter(t=>t.imp==='baja');
-  else if (activeFilter==='sin-demo') filtered = tasks.filter(t=>!t.d1);
-  else if (activeFilter==='sin-fw')   filtered = tasks.filter(t=>!t.d2);
-
-  const marks = [];
-  let cur = new Date(S);
-  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime() + 7*86400000); }
-
-  const todayP = pct(TODAY_STR);
-  const origin = 0;
-
+  const filtered = getFiltered();
   if (!filtered.length) {
-    document.getElementById('gantt-body').innerHTML = `<div style="padding:36px;text-align:center;color:var(--text-3);font-size:13px;">Sin tareas con este filtro.</div>`;
+    document.getElementById('gantt-body').innerHTML =
+      `<div style="padding:36px;text-align:center;color:var(--text-3);font-size:13px;">Sin tareas con este filtro.</div>`;
     return;
   }
 
-  document.getElementById('gantt-body').innerHTML = filtered.map(t => {
-    const e1 = pct(t.d1), e2 = pct(t.d2);
-    let bars = '';
-    if (e1!==null) bars += `<div class="tl-bar bar-demo" style="left:${origin}%;width:${e1}%;background:${t.color};">${fmtShort(t.d1)}</div>`;
-    if (e2!==null) bars += `<div class="tl-bar bar-fw"   style="left:${origin}%;width:${e2}%;border-color:${t.color};color:${t.color};">${fmtShort(t.d2)}</div>`;
-    if (!e1&&!e2)  bars  = `<div class="no-date">Sin fecha definida</div>`;
-    const ticks = marks.map(m=>`<div class="tl-tick" style="left:${pct(m)}%"></div>`).join('');
-    const badge = t.imp ? `<span class="badge b-${t.imp}">${t.imp}</span>` : `<span class="badge b-nd">—</span>`;
-    return `
-      <div class="g-row" ondblclick="openModal(${t.id})" title="Doble clic para editar">
-        <div style="display:flex;align-items:center;">
-          <span class="color-tag" style="background:${t.color};"></span>
-          <div style="min-width:0;">
-            <div class="g-name">${t.p}</div>
-            <div class="g-comment">${t.c||''}</div>
+  // Agrupar por plataforma
+  const groups = [];
+  const seen = {};
+  filtered.forEach(t => {
+    if (!seen[t.plat]) { seen[t.plat] = []; groups.push({ plat:t.plat, rows:seen[t.plat] }); }
+    seen[t.plat].push(t);
+  });
+
+  const marks = [];
+  let cur = new Date(S);
+  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime()+7*86400000); }
+  const todayP = pct(TODAY_STR);
+  const ticks  = marks.map(m=>`<div class="tl-tick" style="left:${pct(m)}%"></div>`).join('');
+  const todayLine = `<div class="tl-today" style="left:${todayP}%"></div>`;
+
+  let html = '';
+  groups.forEach(g => {
+    const platCfg = platforms[g.plat] || { due: null, color: '#888' };
+    const color   = platCfg.color;
+    const platDue = platCfg.due;
+    const platDuePct = pct(platDue);
+
+    // Badge de fecha de entrega del proyecto
+    let dueBadge = '';
+    if (platDue) {
+      const cls = dueBadgeClass(platDue);
+      dueBadge = `<span class="plat-due-badge ${cls}">🎯 Entrega proyecto: ${fmtShort(platDue)}</span>`;
+    } else {
+      dueBadge = `<span class="plat-due-badge" style="color:var(--text-3);">🎯 Sin fecha de entrega</span>`;
+    }
+
+    // Línea vertical de deadline en el gantt
+    const deadlineLine = platDuePct !== null
+      ? `<div class="deadline-line" style="left:${platDuePct}%;border-color:${color};"></div>
+         <div class="deadline-flag" style="left:${platDuePct}%;color:${color};">${fmtShort(platDue)}</div>`
+      : '';
+
+    html += `
+      <div class="plat-group-header" style="border-left:4px solid ${color};">
+        <div class="plat-group-left">
+          <div class="plat-group-name">
+            <span class="plat-color-dot" style="background:${color};"></span>
+            ${g.plat}
           </div>
+          <div class="plat-due">${dueBadge}</div>
         </div>
-        <div>${badge}</div>
-        <div class="tl">
+        <div></div>
+        <div class="tl" style="height:28px;">
           ${ticks}
-          <div class="tl-today" style="left:${todayP}%"></div>
-          ${bars}
+          <div class="tl-today" style="left:${todayP}%;top:0;bottom:0;"></div>
+          ${deadlineLine}
+        </div>
+        <div>
+          <button class="btn-edit-plat" onclick="openPlatModal('${g.plat.replace(/'/g,"\\'")}')">✏️ Fecha</button>
         </div>
       </div>`;
-  }).join('');
+
+    g.rows.forEach(t => {
+      const p = pct(t.due);
+      const isDemo = t.type === 'demo';
+      const typeLabel = isDemo ? '📦 Entrega demo' : '🚀 Subida FW/DWH';
+      const badge = t.imp ? `<span class="badge b-${t.imp}">${t.imp}</span>` : `<span class="badge b-nd">—</span>`;
+      let bar = '';
+      if (p !== null) {
+        bar = isDemo
+          ? `<div class="tl-bar bar-solid" style="left:0%;width:${p}%;background:${t.color};">${fmtShort(t.due)}</div>`
+          : `<div class="tl-bar bar-dashed" style="left:0%;width:${p}%;border-color:${t.color};color:${t.color};">${fmtShort(t.due)}</div>`;
+      } else {
+        bar = `<div class="no-date">Sin fecha</div>`;
+      }
+
+      html += `
+        <div class="g-row">
+          <div>
+            <div class="g-type">
+              <span class="g-type-dot" style="${isDemo ? 'background:'+t.color : 'background:transparent;border:2px dashed '+t.color}"></span>
+              ${typeLabel}
+            </div>
+            <div class="g-comment">${t.c||''}</div>
+          </div>
+          <div>${badge}</div>
+          <div class="tl">${ticks}${todayLine}${bar}</div>
+          <div><button class="btn-icon edit" title="Editar" onclick="openTaskModal(${t.id})">✏️</button></div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('gantt-body').innerHTML = html;
 }
 
 function renderAll() { renderKPIs(); renderGantt(); }
 
-// ── Filter ────────────────────────────────────────────────────────────────
+// ── Filter ─────────────────────────────────────────────────────────────────
 function setFilter(f, el) {
   activeFilter = f;
   document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
@@ -339,69 +494,112 @@ function setFilter(f, el) {
   renderGantt();
 }
 
-// ── Modal ─────────────────────────────────────────────────────────────────
-function openModal(id) {
-  editingId = id;
-  const t = id ? tasks.find(x=>x.id===id) : null;
-  document.getElementById('modal-title').textContent = t ? 'Editar tarea' : 'Nueva tarea';
-  document.getElementById('f-name').value    = t ? t.p       : '';
-  document.getElementById('f-comment').value = t ? (t.c||'') : '';
-  document.getElementById('f-d1').value      = t ? (t.d1||'') : '';
-  document.getElementById('f-d2').value      = t ? (t.d2||'') : '';
+// ── Modal Tarea ────────────────────────────────────────────────────────────
+function openTaskModal(id) {
+  editingTaskId = id;
+  const t = id !== null ? tasks.find(x=>x.id===id) : null;
+  document.getElementById('task-modal-title').textContent = t ? `Editar — ${t.plat} (${t.type==='demo'?'Demo':'FW/DWH'})` : 'Nueva tarea';
+  document.getElementById('f-name').value    = t ? t.plat      : '';
+  document.getElementById('f-type').value    = t ? t.type      : 'demo';
   document.getElementById('f-imp').value     = t ? (t.imp||'') : '';
-  document.getElementById('f-color').value   = t ? t.color   : '#378ADD';
-  document.getElementById('modal-backdrop').classList.add('open');
+  document.getElementById('f-comment').value = t ? (t.c||'')   : '';
+  document.getElementById('f-due').value     = t ? (t.due||'') : '';
+  document.getElementById('f-color').value   = t ? t.color     : '#378ADD';
+  document.getElementById('task-btn-delete').style.display = t ? 'inline-flex' : 'none';
+  document.getElementById('task-modal-backdrop').classList.add('open');
   setTimeout(()=>document.getElementById('f-name').focus(), 80);
 }
-function closeModal() {
-  document.getElementById('modal-backdrop').classList.remove('open');
-  editingId = null;
+function closeTaskModal() {
+  document.getElementById('task-modal-backdrop').classList.remove('open');
+  editingTaskId = null;
 }
 function saveTask() {
-  const p     = document.getElementById('f-name').value.trim();
-  if (!p) { document.getElementById('f-name').style.borderColor='var(--red)'; document.getElementById('f-name').focus(); return; }
+  const plat = document.getElementById('f-name').value.trim();
+  if (!plat) { document.getElementById('f-name').style.borderColor='var(--red)'; document.getElementById('f-name').focus(); return; }
   document.getElementById('f-name').style.borderColor='';
-  const c     = document.getElementById('f-comment').value.trim();
-  const d1    = document.getElementById('f-d1').value || null;
-  const d2    = document.getElementById('f-d2').value || null;
-  const imp   = document.getElementById('f-imp').value || null;
-  const color = document.getElementById('f-color').value;
-  if (editingId) {
-    const t = tasks.find(x=>x.id===editingId);
-    if (t) Object.assign(t,{p,c,d1,d2,imp,color});
-    showToast('Tarea actualizada');
+  const data = {
+    plat,
+    type:  document.getElementById('f-type').value,
+    imp:   document.getElementById('f-imp').value   || null,
+    c:     document.getElementById('f-comment').value.trim(),
+    due:   document.getElementById('f-due').value   || null,
+    color: document.getElementById('f-color').value,
+  };
+  if (editingTaskId !== null) {
+    const idx = tasks.findIndex(x=>x.id===editingTaskId);
+    if (idx !== -1) tasks[idx] = { ...tasks[idx], ...data };
+    showToast('✅ Tarea actualizada');
   } else {
-    tasks.push({id:nextId++,p,c,d1,d2,imp,color});
-    showToast('Tarea agregada');
+    tasks.push({ id:nextId++, ...data });
+    // Registrar plataforma si es nueva
+    if (!platforms[plat]) platforms[plat] = { due: null, color: data.color };
+    showToast('✅ Tarea agregada');
   }
-  closeModal();
+  closeTaskModal();
+  renderAll();
+}
+function deleteEditingTask() {
+  if (editingTaskId === null) return;
+  const t = tasks.find(x=>x.id===editingTaskId);
+  if (!t) return;
+  if (confirm(`¿Eliminar esta tarea de "${t.plat}"?`)) {
+    tasks = tasks.filter(x=>x.id!==editingTaskId);
+    closeTaskModal();
+    showToast('🗑 Tarea eliminada');
+    renderAll();
+  }
+}
+
+// ── Modal Plataforma ───────────────────────────────────────────────────────
+function openPlatModal(platName) {
+  editingPlatName = platName;
+  const cfg = platforms[platName] || { due: null };
+  document.getElementById('plat-modal-title').textContent = `Editar plataforma — ${platName}`;
+  document.getElementById('pf-name').value = platName;
+  document.getElementById('pf-due').value  = cfg.due || '';
+  document.getElementById('plat-modal-backdrop').classList.add('open');
+  setTimeout(()=>document.getElementById('pf-due').focus(), 80);
+}
+function closePlatModal() {
+  document.getElementById('plat-modal-backdrop').classList.remove('open');
+  editingPlatName = null;
+}
+function savePlatDue() {
+  if (!editingPlatName) return;
+  const due = document.getElementById('pf-due').value || null;
+  if (!platforms[editingPlatName]) platforms[editingPlatName] = { due: null, color: '#888' };
+  platforms[editingPlatName].due = due;
+  closePlatModal();
+  showToast('✅ Fecha de entrega actualizada');
   renderAll();
 }
 
-// ── Toast ─────────────────────────────────────────────────────────────────
+// ── Toast ──────────────────────────────────────────────────────────────────
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2400);
 }
 
-// ── Export ────────────────────────────────────────────────────────────────
+// ── Export ─────────────────────────────────────────────────────────────────
 function exportHTML() {
-  const src = document.documentElement.outerHTML;
-  const out = src.replace(/let tasks = \[[\s\S]*?\];/, 'let tasks = ' + JSON.stringify(tasks) + ';');
+  let src = document.documentElement.outerHTML;
+  src = src.replace(/let platforms = \{[\s\S]*?\};/, 'let platforms = ' + JSON.stringify(platforms) + ';');
+  src = src.replace(/let tasks = \[[\s\S]*?\];/, 'let tasks = ' + JSON.stringify(tasks) + ';');
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([out],{type:'text/html'}));
+  a.href = URL.createObjectURL(new Blob([src],{type:'text/html'}));
   a.download = 'roadmap-cid-vt.html';
   a.click();
-  showToast('Archivo exportado');
+  showToast('⬇ Archivo exportado');
 }
 
-// ── Events ────────────────────────────────────────────────────────────────
-document.getElementById('modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+// ── Events ─────────────────────────────────────────────────────────────────
+document.getElementById('task-modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closeTaskModal(); });
+document.getElementById('plat-modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closePlatModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeTaskModal(); closePlatModal(); } });
 
-// ── Init ──────────────────────────────────────────────────────────────────
+// ── Init ───────────────────────────────────────────────────────────────────
 document.getElementById('footer-date').textContent = 'Actualizado: ' + fmtLong(TODAY_STR);
 renderKPIs();
 renderDateHeader();
