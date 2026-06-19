@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap CID — Vinatea & Toyama</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+  --red:#E6223D; --red-dark:#b81a30; --navy:#042433; --navy-mid:#0a3a52; --navy-light:#1a5070;
+  --gold:#c9a84c; --bg:#f4f6f9; --surface:#ffffff; --border:#e4e8ed;
+  --text:#111827; --text-2:#4b5563; --text-3:#9ca3af; --today:#E6223D; --r:8px;
+  --font:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* TOPBAR */
+.topbar{background:var(--navy);padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 16px rgba(4,36,51,0.2);}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:36px;height:36px;border-radius:7px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:-0.5px;flex-shrink:0;}
+.brand-name{font-size:14px;font-weight:600;color:#fff;}
+.brand-sub{font-size:11px;color:rgba(255,255,255,0.4);}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.btn{padding:7px 15px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s;white-space:nowrap;}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{background:var(--red-dark);}
+.btn-navy{background:var(--navy-mid);color:#fff;}
+.btn-navy:hover{background:var(--navy-light);}
+.btn-sm{padding:5px 12px;font-size:11px;border-radius:6px;}
+.btn-outline{background:#fff;color:var(--text-2);border:1px solid var(--border);}
+.btn-outline:hover{background:var(--bg);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);padding:40px 32px 32px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-inner{position:relative;max-width:960px;}
+.hero-eyebrow{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.hero-title{font-size:26px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:6px;}
+.hero-title span{color:var(--gold);}
+.hero-desc{font-size:13px;color:rgba(255,255,255,0.5);max-width:500px;line-height:1.6;margin-bottom:22px;}
+.kpi-row{display:flex;gap:12px;flex-wrap:wrap;}
+.kpi{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r);padding:11px 18px;min-width:120px;}
+.kpi-val{font-size:24px;font-weight:700;color:#fff;line-height:1;}
+.kpi-label{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px;}
+
+/* MAIN */
+.content{max-width:1100px;margin:0 auto;padding:28px 32px 60px;}
+
+/* FILTER BAR */
+.filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 16px;margin-bottom:20px;}
+.filter-label{font-size:11px;color:var(--text-3);font-weight:500;}
+.fc{padding:4px 12px;border-radius:14px;font-size:11px;font-weight:500;border:1px solid var(--border);background:var(--bg);color:var(--text-2);cursor:pointer;transition:all 0.12s;}
+.fc:hover,.fc.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+.sep{width:1px;height:18px;background:var(--border);}
+
+/* LEGEND */
+.legend-row{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-2);}
+.leg-solid{width:22px;height:9px;border-radius:2px;}
+.leg-dash{width:22px;height:9px;border-radius:2px;border:2px dashed #888;background:transparent;}
+.leg-today-bar{width:3px;height:14px;background:var(--today);border-radius:2px;}
+
+/* GANTT CARD */
+.gantt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.gc-header{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:210px 62px 1fr;gap:10px;background:#fafbfc;}
+.gc-col{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.7px;}
+.date-hdr{padding:4px 20px 0;display:grid;grid-template-columns:210px 62px 1fr;gap:10px;background:#fafbfc;border-bottom:1px solid var(--border);}
+.date-tl{position:relative;height:20px;}
+.dlbl{position:absolute;font-size:9px;color:var(--text-3);transform:translateX(-50%);bottom:3px;white-space:nowrap;}
+
+/* ROWS */
+.g-row{display:grid;grid-template-columns:210px 62px 1fr;gap:10px;align-items:center;padding:0 20px;min-height:56px;border-bottom:1px solid #f3f4f6;transition:background 0.1s;cursor:pointer;}
+.g-row:last-child{border-bottom:none;}
+.g-row:hover{background:#f8fafc;}
+.g-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.g-comment{font-size:10px;color:var(--text-2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.color-tag{display:inline-block;width:4px;height:32px;border-radius:2px;flex-shrink:0;margin-right:10px;}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;}
+.b-alta{background:#fef2f2;color:#b91c1c;}
+.b-baja{background:#f0fdf4;color:#166534;}
+.b-nd{background:#f9fafb;color:#9ca3af;border:1px solid #e5e7eb;}
+
+.tl{position:relative;height:46px;}
+.tl-tick{position:absolute;top:0;bottom:0;width:0.5px;background:#eef0f3;}
+.tl-today{position:absolute;top:0;bottom:0;width:2.5px;background:var(--today);z-index:6;border-radius:2px;}
+.tl-today::after{content:'Hoy';position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;color:var(--today);white-space:nowrap;}
+.tl-bar{position:absolute;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;z-index:2;transition:opacity 0.15s;}
+.tl-bar:hover{opacity:0.82;}
+.bar-demo{height:17px;top:5px;color:#fff;}
+.bar-fw{height:17px;top:25px;background:transparent!important;border-width:2px;border-style:dashed;}
+.no-date{position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-3);font-style:italic;}
+
+/* MODAL */
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;align-items:center;justify-content:center;}
+.backdrop.open{display:flex;}
+.modal{background:#fff;border-radius:12px;padding:24px;width:460px;max-width:95vw;box-shadow:0 12px 40px rgba(0,0,0,0.2);}
+.modal-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:18px;}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
+.field label{font-size:11px;color:var(--text-3);font-weight:500;}
+.field input,.field select{font-family:var(--font);font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:7px 10px;background:#fff;transition:border-color 0.15s;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--navy);}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:6px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;font-size:12px;font-weight:500;z-index:999;opacity:0;transform:translateY(8px);transition:all 0.25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;background:var(--surface);font-size:11px;color:var(--text-3);}
+.footer-brand{font-weight:600;color:var(--navy);}
+@media print{.topbar,.filter-bar,.backdrop{display:none!important;}.hero{padding:16px 0;}.content{padding:12px 0;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">V&T</div>
+    <div>
+      <div class="brand-name">Vinatea &amp; Toyama</div>
+      <div class="brand-sub">Centro de Información y Documentación</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <button class="btn btn-ghost" onclick="window.print()">⎙ Imprimir</button>
+    <button class="btn btn-ghost" onclick="exportHTML()">⬇ Exportar</button>
+    <button class="btn btn-red" onclick="openModal(null)">+ Nueva tarea</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Roadmap de plataformas · 2026</div>
+    <div class="hero-title">Plan de <span>entregas</span> CID</div>
+    <div class="hero-desc">Seguimiento de pendientes de desarrollo, integración al framework Next.js y subida al Data Warehouse para las plataformas del equipo CID.</div>
+    <div class="kpi-row" id="kpis"></div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="filter-bar">
+    <span class="filter-label">Filtrar:</span>
+    <button class="fc on" onclick="setFilter('all',this)">Todas</button>
+    <button class="fc" onclick="setFilter('alta',this)">Alta prioridad</button>
+    <button class="fc" onclick="setFilter('baja',this)">Baja prioridad</button>
+    <div class="sep"></div>
+    <button class="fc" onclick="setFilter('sin-demo',this)">Sin entrega demo</button>
+    <button class="fc" onclick="setFilter('sin-fw',this)">Sin subida FW</button>
+  </div>
+
+  <div class="legend-row">
+    <div class="leg"><span class="leg-solid" style="background:#378ADD;"></span>Entrega demo</div>
+    <div class="leg"><span class="leg-dash"></span>Subida a Framework / DWH</div>
+    <div class="leg"><span class="leg-today-bar"></span>Hoy</div>
+  </div>
+
+  <div class="gantt-card">
+    <div class="gc-header">
+      <span class="gc-col">Plataforma</span>
+      <span class="gc-col">Prior.</span>
+      <span class="gc-col">19 jun → 20 jul 2026</span>
+    </div>
+    <div class="date-hdr"><div></div><div></div><div class="date-tl" id="date-hdr"></div></div>
+    <div id="gantt-body"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Equipo <span class="footer-brand">CID · V&T</span></span>
+  <span id="footer-date"></span>
+</div>
+
+<!-- MODAL -->
+<div class="backdrop" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Nueva tarea</div>
+    <div class="field"><label>Plataforma / proceso *</label><input id="f-name" type="text" placeholder="Ej: Tareas de gestión"></div>
+    <div class="field"><label>Comentario</label><input id="f-comment" type="text" placeholder="Ej: Mostrar cambios"></div>
+    <div class="fgrid">
+      <div class="field"><label>Entrega demo</label><input id="f-d1" type="date"></div>
+      <div class="field"><label>Subida a Framework</label><input id="f-d2" type="date"></div>
+    </div>
+    <div class="fgrid">
+      <div class="field"><label>Importancia</label>
+        <select id="f-imp">
+          <option value="">— sin definir —</option>
+          <option value="alta">Alta</option>
+          <option value="baja">Baja</option>
+        </select>
+      </div>
+      <div class="field"><label>Color de barra</label>
+        <input id="f-color" type="color" value="#378ADD" style="height:34px;padding:2px 4px;border:1px solid var(--border);border-radius:6px;cursor:pointer;width:100%;">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-navy btn-sm" onclick="saveTask()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Timezone-safe date parsing ──────────────────────────────────────────────
+function parseDate(s) {
+  if (!s) return null;
+  const [y,m,d] = s.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+function fmtShort(s) {
+  if (!s) return '';
+  const d = parseDate(s);
+  return d.toLocaleDateString('es-PE', { day:'2-digit', month:'short' });
+}
+function fmtLong(s) {
+  if (!s) return '';
+  const d = parseDate(s);
+  return d.toLocaleDateString('es-PE', { day:'2-digit', month:'long', year:'numeric' });
+}
+
+const S_STR = '2026-06-19';
+const E_STR = '2026-07-20';
+const TODAY_STR = '2026-06-19';
+const S = parseDate(S_STR);
+const E = parseDate(E_STR);
+const TOTAL = (E - S) / 86400000;
+
+function pct(s) {
+  if (!s) return null;
+  const d = parseDate(s);
+  return Math.max(0, Math.min(100, ((d - S) / 86400000 / TOTAL) * 100));
+}
+
+// ── Data ───────────────────────────────────────────────────────────────────
+let tasks = [
+  { id:1, p:'Tareas de gestión',      c:'Mostrar cambios',               imp:'alta', d1:'2026-06-23', d2:'2026-07-03', color:'#378ADD' },
+  { id:2, p:'Audiencias',             c:'Mostrar cambios',               imp:'alta', d1:'2026-06-26', d2:'2026-07-08', color:'#1D9E75' },
+  { id:3, p:'Centro de reportes',     c:'Subir al framework',            imp:'alta', d1:'2026-06-26', d2:'2026-07-08', color:'#7F77DD' },
+  { id:4, p:'Homologación',           c:'Subir al framework',            imp:'alta', d1:'2026-06-30', d2:'2026-07-17', color:'#D85A30' },
+  { id:5, p:'CEJ mov. suprema',       c:'Sacar a plataforma + tokens IA',imp:'baja', d1:'2026-07-13', d2:null,         color:'#BA7517' },
+  { id:6, p:'EJE',                    c:'Sacar a plataforma + tokens IA',imp:'baja', d1:'2026-07-13', d2:null,         color:'#D4537E' },
+  { id:7, p:'Búsqueda proc. suprema', c:'Seguimiento creación (Mario)',  imp:'alta', d1:'2026-06-29', d2:null,         color:'#639922' },
+  { id:8, p:'CEJ movimientos',        c:'Creación DWH',                  imp:null,   d1:null,          d2:null,         color:'#888780' },
+];
+let nextId = 9;
+let editingId = null;
+let activeFilter = 'all';
+
+// ── KPIs ──────────────────────────────────────────────────────────────────
+function renderKPIs() {
+  const total    = tasks.length;
+  const conDemo  = tasks.filter(t=>t.d1).length;
+  const conFW    = tasks.filter(t=>t.d2).length;
+  const alta     = tasks.filter(t=>t.imp==='alta').length;
+  const proximas = tasks.filter(t=>{
+    if (!t.d1) return false;
+    const diff = (parseDate(t.d1) - parseDate(TODAY_STR)) / 86400000;
+    return diff >= 0 && diff <= 7;
+  }).length;
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="kpi-val">${total}</div><div class="kpi-label">Plataformas</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:#6ee7b7;">${conDemo}</div><div class="kpi-label">Con entrega demo</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:#93c5fd;">${conFW}</div><div class="kpi-label">Con subida FW</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:#fca5a5;">${alta}</div><div class="kpi-label">Alta prioridad</div></div>
+    <div class="kpi"><div class="kpi-val" style="color:#fcd34d;">${proximas}</div><div class="kpi-label">Esta semana</div></div>
+  `;
+}
+
+// ── Date header ───────────────────────────────────────────────────────────
+function renderDateHeader() {
+  const marks = [];
+  let cur = new Date(S);
+  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime() + 7*86400000); }
+  if (marks[marks.length-1] !== E_STR) marks.push(E_STR);
+  document.getElementById('date-hdr').innerHTML = marks.map(m =>
+    `<span class="dlbl" style="left:${pct(m)}%">${fmtShort(m)}</span>`
+  ).join('');
+}
+
+// ── Gantt ─────────────────────────────────────────────────────────────────
+function renderGantt() {
+  let filtered = tasks;
+  if (activeFilter==='alta')     filtered = tasks.filter(t=>t.imp==='alta');
+  else if (activeFilter==='baja')     filtered = tasks.filter(t=>t.imp==='baja');
+  else if (activeFilter==='sin-demo') filtered = tasks.filter(t=>!t.d1);
+  else if (activeFilter==='sin-fw')   filtered = tasks.filter(t=>!t.d2);
+
+  const marks = [];
+  let cur = new Date(S);
+  while (cur <= E) { marks.push(cur.toISOString().split('T')[0]); cur = new Date(cur.getTime() + 7*86400000); }
+
+  const todayP = pct(TODAY_STR);
+  const origin = 0;
+
+  if (!filtered.length) {
+    document.getElementById('gantt-body').innerHTML = `<div style="padding:36px;text-align:center;color:var(--text-3);font-size:13px;">Sin tareas con este filtro.</div>`;
+    return;
+  }
+
+  document.getElementById('gantt-body').innerHTML = filtered.map(t => {
+    const e1 = pct(t.d1), e2 = pct(t.d2);
+    let bars = '';
+    if (e1!==null) bars += `<div class="tl-bar bar-demo" style="left:${origin}%;width:${e1}%;background:${t.color};">${fmtShort(t.d1)}</div>`;
+    if (e2!==null) bars += `<div class="tl-bar bar-fw"   style="left:${origin}%;width:${e2}%;border-color:${t.color};color:${t.color};">${fmtShort(t.d2)}</div>`;
+    if (!e1&&!e2)  bars  = `<div class="no-date">Sin fecha definida</div>`;
+    const ticks = marks.map(m=>`<div class="tl-tick" style="left:${pct(m)}%"></div>`).join('');
+    const badge = t.imp ? `<span class="badge b-${t.imp}">${t.imp}</span>` : `<span class="badge b-nd">—</span>`;
+    return `
+      <div class="g-row" ondblclick="openModal(${t.id})" title="Doble clic para editar">
+        <div style="display:flex;align-items:center;">
+          <span class="color-tag" style="background:${t.color};"></span>
+          <div style="min-width:0;">
+            <div class="g-name">${t.p}</div>
+            <div class="g-comment">${t.c||''}</div>
+          </div>
+        </div>
+        <div>${badge}</div>
+        <div class="tl">
+          ${ticks}
+          <div class="tl-today" style="left:${todayP}%"></div>
+          ${bars}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderAll() { renderKPIs(); renderGantt(); }
+
+// ── Filter ────────────────────────────────────────────────────────────────
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  renderGantt();
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+function openModal(id) {
+  editingId = id;
+  const t = id ? tasks.find(x=>x.id===id) : null;
+  document.getElementById('modal-title').textContent = t ? 'Editar tarea' : 'Nueva tarea';
+  document.getElementById('f-name').value    = t ? t.p       : '';
+  document.getElementById('f-comment').value = t ? (t.c||'') : '';
+  document.getElementById('f-d1').value      = t ? (t.d1||'') : '';
+  document.getElementById('f-d2').value      = t ? (t.d2||'') : '';
+  document.getElementById('f-imp').value     = t ? (t.imp||'') : '';
+  document.getElementById('f-color').value   = t ? t.color   : '#378ADD';
+  document.getElementById('modal-backdrop').classList.add('open');
+  setTimeout(()=>document.getElementById('f-name').focus(), 80);
+}
+function closeModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  editingId = null;
+}
+function saveTask() {
+  const p     = document.getElementById('f-name').value.trim();
+  if (!p) { document.getElementById('f-name').style.borderColor='var(--red)'; document.getElementById('f-name').focus(); return; }
+  document.getElementById('f-name').style.borderColor='';
+  const c     = document.getElementById('f-comment').value.trim();
+  const d1    = document.getElementById('f-d1').value || null;
+  const d2    = document.getElementById('f-d2').value || null;
+  const imp   = document.getElementById('f-imp').value || null;
+  const color = document.getElementById('f-color').value;
+  if (editingId) {
+    const t = tasks.find(x=>x.id===editingId);
+    if (t) Object.assign(t,{p,c,d1,d2,imp,color});
+    showToast('Tarea actualizada');
+  } else {
+    tasks.push({id:nextId++,p,c,d1,d2,imp,color});
+    showToast('Tarea agregada');
+  }
+  closeModal();
+  renderAll();
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+// ── Export ────────────────────────────────────────────────────────────────
+function exportHTML() {
+  const src = document.documentElement.outerHTML;
+  const out = src.replace(/let tasks = \[[\s\S]*?\];/, 'let tasks = ' + JSON.stringify(tasks) + ';');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([out],{type:'text/html'}));
+  a.download = 'roadmap-cid-vt.html';
+  a.click();
+  showToast('Archivo exportado');
+}
+
+// ── Events ────────────────────────────────────────────────────────────────
+document.getElementById('modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+// ── Init ──────────────────────────────────────────────────────────────────
+document.getElementById('footer-date').textContent = 'Actualizado: ' + fmtLong(TODAY_STR);
+renderKPIs();
+renderDateHeader();
+renderGantt();
+</script>
+</body>
+</html>
