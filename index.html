@@ -239,6 +239,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
       </div>
     </div>
     <div class="field"><label>Comentario</label><input id="f-comment" type="text" placeholder="Ej: Mostrar cambios al equipo"></div>
+    <div class="field"><label>Notas / observaciones</label><textarea id="f-notas" rows="3" placeholder="Observaciones adicionales, pendientes, contexto..." style="font-family:var(--font);font-size:13px;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#fff;width:100%;resize:vertical;transition:border-color 0.15s;"></textarea></div>
     <div class="fgrid">
       <div class="field"><label>Fecha de entrega</label><input id="f-due" type="date"></div>
       <div class="field"><label>Color de barra</label>
@@ -259,7 +260,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 <div class="backdrop" id="plat-modal-backdrop">
   <div class="modal">
     <div class="modal-title" id="plat-modal-title">Editar plataforma</div>
-    <div class="field"><label>Nombre de plataforma</label><input id="pf-name" type="text" readonly style="background:#f8f9fb;color:var(--text-3);"></div>
+    <div class="field"><label>Nombre de plataforma</label><input id="pf-name" type="text" placeholder="Nombre de la plataforma"></div>
     <div class="field">
       <label>📅 Fecha de entrega del proyecto</label>
       <input id="pf-due" type="date">
@@ -316,32 +317,40 @@ function dueBadgeClass(s) {
 
 // ── Plataformas (fecha entrega a nivel proyecto) ───────────────────────────
 let platforms = {
-  'Tareas de gestión':        { due: '2026-07-03', color: '#378ADD' },
-  'Audiencias':               { due: '2026-07-08', color: '#1D9E75' },
-  'Centro de reportes':       { due: '2026-07-08', color: '#7F77DD' },
-  'Homologación':             { due: '2026-07-17', color: '#D85A30' },
-  'CEJ mov. suprema':         { due: null,          color: '#BA7517' },
-  'EJE':                      { due: null,          color: '#D4537E' },
-  'Búsqueda proc. suprema':   { due: '2026-06-29', color: '#639922' },
-  'CEJ movimientos':          { due: null,          color: '#888780' },
+  'Tareas de gestión':           { due: '2026-07-03', color: '#378ADD' },
+  'Audiencias':                  { due: '2026-07-08', color: '#1D9E75' },
+  'Centro de reportes':          { due: '2026-07-08', color: '#7F77DD' },
+  'Homologación':                { due: '2026-07-17', color: '#D85A30' },
+  'CEJ mov. suprema':            { due: null,          color: '#BA7517' },
+  'EJE':                         { due: null,          color: '#D4537E' },
+  'Búsqueda proc. suprema':      { due: '2026-06-29', color: '#639922' },
+  'CEJ movimientos':             { due: null,          color: '#888780' },
+  'Sharepoint - Creación de carpetas': { due: '2026-06-22', color: '#0078D4' },
+  'Plataforma objetivos':        { due: null,          color: '#22C55E' },
+  'Plataforma - Flujos procesales': { due: null,       color: '#6366F1' },
+  'Plataforma - Tracker CID':    { due: null,          color: '#A855F7' },
 };
 
 // ── Tareas individuales ────────────────────────────────────────────────────
 let tasks = [
-  { id:1,  plat:'Tareas de gestión',      type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-23', color:'#378ADD' },
-  { id:2,  plat:'Tareas de gestión',      type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-03', color:'#378ADD' },
-  { id:3,  plat:'Audiencias',             type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-26', color:'#1D9E75' },
-  { id:4,  plat:'Audiencias',             type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#1D9E75' },
-  { id:5,  plat:'Centro de reportes',     type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-26', color:'#7F77DD' },
-  { id:6,  plat:'Centro de reportes',     type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#7F77DD' },
-  { id:7,  plat:'Homologación',           type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-30', color:'#D85A30' },
-  { id:8,  plat:'Homologación',           type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-17', color:'#D85A30' },
-  { id:9,  plat:'CEJ mov. suprema',       type:'demo', c:'Sacar a plataforma + tokens IA',imp:'baja', due:'2026-07-13', color:'#BA7517' },
-  { id:10, plat:'EJE',                    type:'demo', c:'Sacar a plataforma + tokens IA',imp:'baja', due:'2026-07-13', color:'#D4537E' },
-  { id:11, plat:'Búsqueda proc. suprema', type:'demo', c:'Seguimiento creación (Mario)',  imp:'alta', due:'2026-06-29', color:'#639922' },
-  { id:12, plat:'CEJ movimientos',        type:'fw',   c:'Creación DWH',                  imp:null,   due:null,         color:'#888780' },
+  { id:1,  plat:'Tareas de gestión',      type:'demo', c:'Mostrar cambios',                imp:'alta', due:'2026-06-23', color:'#378ADD', notas:'' },
+  { id:2,  plat:'Tareas de gestión',      type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-03', color:'#378ADD', notas:'' },
+  { id:3,  plat:'Audiencias',             type:'demo', c:'Mostrar cambios',                imp:'alta', due:'2026-06-26', color:'#1D9E75', notas:'' },
+  { id:4,  plat:'Audiencias',             type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-08', color:'#1D9E75', notas:'' },
+  { id:5,  plat:'Centro de reportes',     type:'demo', c:'Subir al framework',             imp:'alta', due:'2026-06-26', color:'#7F77DD', notas:'' },
+  { id:6,  plat:'Centro de reportes',     type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-08', color:'#7F77DD', notas:'' },
+  { id:7,  plat:'Homologación',           type:'demo', c:'Subir al framework',             imp:'alta', due:'2026-06-30', color:'#D85A30', notas:'' },
+  { id:8,  plat:'Homologación',           type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-17', color:'#D85A30', notas:'' },
+  { id:9,  plat:'CEJ mov. suprema',       type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#BA7517', notas:'' },
+  { id:10, plat:'EJE',                    type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#D4537E', notas:'' },
+  { id:11, plat:'Búsqueda proc. suprema', type:'demo', c:'Seguimiento creación (Mario)',   imp:'alta', due:'2026-06-29', color:'#639922', notas:'' },
+  { id:12, plat:'CEJ movimientos',        type:'fw',   c:'Creación DWH',                   imp:null,   due:null,         color:'#888780', notas:'' },
+  { id:13, plat:'Sharepoint - Creación de carpetas', type:'demo', c:'Mostrar creación de carpetas y subidas de documentos', imp:'alta', due:'2026-06-22', color:'#0078D4', notas:'' },
+  { id:14, plat:'Plataforma objetivos',   type:'demo', c:'Plataforma para entregar a analistas', imp:'baja', due:'2026-06-25', color:'#22C55E', notas:'' },
+  { id:15, plat:'Plataforma - Flujos procesales', type:'fw', c:'Subir al framework',      imp:'alta', due:'2026-07-06', color:'#6366F1', notas:'' },
+  { id:16, plat:'Plataforma - Tracker CID', type:'fw', c:'Subir al framework y validación', imp:'alta', due:'2026-07-10', color:'#A855F7', notas:'' },
 ];
-let nextId = 13;
+let nextId = 17;
 let editingTaskId = null;
 let editingPlatName = null;
 let activeFilter = 'all';
@@ -400,6 +409,16 @@ function renderGantt() {
   filtered.forEach(t => {
     if (!seen[t.plat]) { seen[t.plat] = []; groups.push({ plat:t.plat, rows:seen[t.plat] }); }
     seen[t.plat].push(t);
+  });
+
+  // Ordenar grupos por fecha de entrega del proyecto (más próxima primero, sin fecha al final)
+  groups.sort((a, b) => {
+    const dueA = platforms[a.plat]?.due;
+    const dueB = platforms[b.plat]?.due;
+    if (!dueA && !dueB) return 0;
+    if (!dueA) return 1;
+    if (!dueB) return -1;
+    return parseDate(dueA) - parseDate(dueB);
   });
 
   const marks = [];
@@ -473,6 +492,7 @@ function renderGantt() {
               ${typeLabel}
             </div>
             <div class="g-comment">${t.c||''}</div>
+            ${t.notas ? `<div style="font-size:10px;color:#6366F1;padding-left:18px;margin-top:1px;">📝 ${t.notas}</div>` : ''}
           </div>
           <div>${badge}</div>
           <div class="tl">${ticks}${todayLine}${bar}</div>
@@ -520,12 +540,13 @@ function openTaskModal(id) {
   editingTaskId = id;
   const t = id !== null ? tasks.find(x=>x.id===id) : null;
   document.getElementById('task-modal-title').textContent = t ? `Editar — ${t.plat} (${t.type==='demo'?'Demo':'FW/DWH'})` : 'Nueva tarea';
-  document.getElementById('f-name').value    = t ? t.plat      : '';
-  document.getElementById('f-type').value    = t ? t.type      : 'demo';
-  document.getElementById('f-imp').value     = t ? (t.imp||'') : '';
-  document.getElementById('f-comment').value = t ? (t.c||'')   : '';
-  document.getElementById('f-due').value     = t ? (t.due||'') : '';
-  document.getElementById('f-color').value   = t ? t.color     : '#378ADD';
+  document.getElementById('f-name').value    = t ? t.plat        : '';
+  document.getElementById('f-type').value    = t ? t.type        : 'demo';
+  document.getElementById('f-imp').value     = t ? (t.imp||'')   : '';
+  document.getElementById('f-comment').value = t ? (t.c||'')     : '';
+  document.getElementById('f-notas').value   = t ? (t.notas||'') : '';
+  document.getElementById('f-due').value     = t ? (t.due||'')   : '';
+  document.getElementById('f-color').value   = t ? t.color       : '#378ADD';
   document.getElementById('task-btn-delete').style.display = t ? 'inline-flex' : 'none';
   document.getElementById('task-modal-backdrop').classList.add('open');
   setTimeout(()=>document.getElementById('f-name').focus(), 80);
@@ -543,6 +564,7 @@ function saveTask() {
     type:  document.getElementById('f-type').value,
     imp:   document.getElementById('f-imp').value   || null,
     c:     document.getElementById('f-comment').value.trim(),
+    notas: document.getElementById('f-notas').value.trim(),
     due:   document.getElementById('f-due').value   || null,
     color: document.getElementById('f-color').value,
   };
@@ -552,7 +574,6 @@ function saveTask() {
     showToast('✅ Tarea actualizada');
   } else {
     tasks.push({ id:nextId++, ...data });
-    // Registrar plataforma si es nueva
     if (!platforms[plat]) platforms[plat] = { due: null, color: data.color };
     showToast('✅ Tarea agregada');
   }
@@ -587,11 +608,25 @@ function closePlatModal() {
 }
 function savePlatDue() {
   if (!editingPlatName) return;
-  const due = document.getElementById('pf-due').value || null;
-  if (!platforms[editingPlatName]) platforms[editingPlatName] = { due: null, color: '#888' };
-  platforms[editingPlatName].due = due;
+  const newName = document.getElementById('pf-name').value.trim();
+  const due     = document.getElementById('pf-due').value || null;
+  if (!newName) return;
+
+  // Renombrar plataforma si cambió el nombre
+  if (newName !== editingPlatName) {
+    // Mover config a nueva clave
+    const cfg = platforms[editingPlatName] || { due: null, color: '#888' };
+    platforms[newName] = { ...cfg, due };
+    delete platforms[editingPlatName];
+    // Actualizar todas las tareas que referencian el nombre viejo
+    tasks.forEach(t => { if (t.plat === editingPlatName) t.plat = newName; });
+  } else {
+    if (!platforms[editingPlatName]) platforms[editingPlatName] = { due: null, color: '#888' };
+    platforms[editingPlatName].due = due;
+  }
+
   closePlatModal();
-  showToast('✅ Fecha de entrega actualizada');
+  showToast('✅ Plataforma actualizada');
   renderAll();
 }
 
