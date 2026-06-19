@@ -164,7 +164,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
     </div>
   </div>
   <div class="topbar-right">
-    <button class="btn btn-ghost" onclick="exportExcel()">⬇ Exportar Excel</button>
+    <button class="btn btn-ghost" onclick="exportExcel()">⬇ Excel</button>
+    <button class="btn btn-ghost" onclick="publicar()">🚀 Publicar</button>
     <button class="btn btn-red" onclick="openTaskModal(null)">+ Nueva tarea</button>
   </div>
 </div>
@@ -317,40 +318,44 @@ function dueBadgeClass(s) {
 
 // ── Plataformas (fecha entrega a nivel proyecto) ───────────────────────────
 let platforms = {
-  'Tareas de gestión':           { due: '2026-07-03', color: '#378ADD' },
-  'Audiencias':                  { due: '2026-07-08', color: '#1D9E75' },
-  'Centro de reportes':          { due: '2026-07-08', color: '#7F77DD' },
-  'Homologación':                { due: '2026-07-17', color: '#D85A30' },
-  'CEJ mov. suprema':            { due: null,          color: '#BA7517' },
-  'EJE':                         { due: null,          color: '#D4537E' },
-  'Búsqueda proc. suprema':      { due: '2026-06-29', color: '#639922' },
-  'CEJ movimientos':             { due: null,          color: '#888780' },
-  'Sharepoint - Creación de carpetas': { due: '2026-06-22', color: '#0078D4' },
-  'Plataforma objetivos':        { due: null,          color: '#22C55E' },
-  'Plataforma - Flujos procesales': { due: null,       color: '#6366F1' },
-  'Plataforma - Tracker CID':    { due: null,          color: '#A855F7' },
+  'Sharepoint - Creación de carpetas':   { due: '2026-06-22', color: '#0078D4' },
+  'Plataforma - Tareas de gestión RMR':  { due: '2026-07-31', color: '#378ADD' },
+  'Plataforma objetivos - CID':          { due: null,          color: '#22C55E' },
+  'Plataforma Audiencias legal':         { due: '2026-07-31', color: '#1D9E75' },
+  'Plataforma - Centro de reportes':     { due: '2026-07-31', color: '#7F77DD' },
+  'Búsqueda proc. suprema':             { due: '2026-06-29', color: '#639922' },
+  'Plataforma - Homologación con facturación': { due: '2026-07-31', color: '#D85A30' },
+  'Plataforma - Tareas comerciales':     { due: null,          color: '#10B981' },
+  'Plataforma - Contactos V&T':          { due: null,          color: '#3B82F6' },
+  'Plataforma - Flujos procesales':      { due: null,          color: '#6366F1' },
+  'Plataforma - Tracker CID':            { due: null,          color: '#A855F7' },
+  'CEJ mov. suprema':                    { due: null,          color: '#BA7517' },
+  'EJE':                                 { due: null,          color: '#D4537E' },
+  'CEJ movimientos':                     { due: null,          color: '#888780' },
 };
 
 // ── Tareas individuales ────────────────────────────────────────────────────
 let tasks = [
-  { id:1,  plat:'Tareas de gestión',      type:'demo', c:'Mostrar cambios',                imp:'alta', due:'2026-06-23', color:'#378ADD', notas:'' },
-  { id:2,  plat:'Tareas de gestión',      type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-03', color:'#378ADD', notas:'' },
-  { id:3,  plat:'Audiencias',             type:'demo', c:'Mostrar cambios',                imp:'alta', due:'2026-06-26', color:'#1D9E75', notas:'' },
-  { id:4,  plat:'Audiencias',             type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-08', color:'#1D9E75', notas:'' },
-  { id:5,  plat:'Centro de reportes',     type:'demo', c:'Subir al framework',             imp:'alta', due:'2026-06-26', color:'#7F77DD', notas:'' },
-  { id:6,  plat:'Centro de reportes',     type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-08', color:'#7F77DD', notas:'' },
-  { id:7,  plat:'Homologación',           type:'demo', c:'Subir al framework',             imp:'alta', due:'2026-06-30', color:'#D85A30', notas:'' },
-  { id:8,  plat:'Homologación',           type:'fw',   c:'Creación DWH',                   imp:'alta', due:'2026-07-17', color:'#D85A30', notas:'' },
-  { id:9,  plat:'CEJ mov. suprema',       type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#BA7517', notas:'' },
-  { id:10, plat:'EJE',                    type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#D4537E', notas:'' },
-  { id:11, plat:'Búsqueda proc. suprema', type:'demo', c:'Seguimiento creación (Mario)',   imp:'alta', due:'2026-06-29', color:'#639922', notas:'' },
-  { id:12, plat:'CEJ movimientos',        type:'fw',   c:'Creación DWH',                   imp:null,   due:null,         color:'#888780', notas:'' },
-  { id:13, plat:'Sharepoint - Creación de carpetas', type:'demo', c:'Mostrar creación de carpetas y subidas de documentos', imp:'alta', due:'2026-06-22', color:'#0078D4', notas:'' },
-  { id:14, plat:'Plataforma objetivos',   type:'demo', c:'Plataforma para entregar a analistas', imp:'baja', due:'2026-06-25', color:'#22C55E', notas:'' },
-  { id:15, plat:'Plataforma - Flujos procesales', type:'fw', c:'Subir al framework',      imp:'alta', due:'2026-07-06', color:'#6366F1', notas:'' },
-  { id:16, plat:'Plataforma - Tracker CID', type:'fw', c:'Subir al framework y validación', imp:'alta', due:'2026-07-10', color:'#A855F7', notas:'' },
+  { id:1,  plat:'Sharepoint - Creación de carpetas',         type:'demo', c:'Mostrar creación de carpetas y subidas de documentos', imp:'alta', due:'2026-06-22', color:'#0078D4', notas:'' },
+  { id:2,  plat:'Plataforma - Tareas de gestión RMR',        type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-23', color:'#378ADD', notas:'' },
+  { id:3,  plat:'Plataforma - Tareas de gestión RMR',        type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-03', color:'#378ADD', notas:'' },
+  { id:4,  plat:'Plataforma objetivos - CID',                type:'demo', c:'Plataforma para entregar a analistas', imp:'baja', due:'2026-06-25', color:'#22C55E', notas:'' },
+  { id:5,  plat:'Plataforma Audiencias legal',               type:'demo', c:'Mostrar cambios',               imp:'alta', due:'2026-06-26', color:'#1D9E75', notas:'' },
+  { id:6,  plat:'Plataforma Audiencias legal',               type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#1D9E75', notas:'' },
+  { id:7,  plat:'Plataforma - Centro de reportes',           type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-26', color:'#7F77DD', notas:'' },
+  { id:8,  plat:'Plataforma - Centro de reportes',           type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-08', color:'#7F77DD', notas:'' },
+  { id:9,  plat:'Búsqueda proc. suprema',                   type:'demo', c:'Seguimiento creación (Mario)',   imp:'alta', due:'2026-06-29', color:'#639922', notas:'' },
+  { id:10, plat:'Plataforma - Homologación con facturación', type:'demo', c:'Subir al framework',            imp:'alta', due:'2026-06-30', color:'#D85A30', notas:'' },
+  { id:11, plat:'Plataforma - Homologación con facturación', type:'fw',   c:'Creación DWH',                  imp:'alta', due:'2026-07-17', color:'#D85A30', notas:'' },
+  { id:12, plat:'Plataforma - Tareas comerciales',           type:'demo', c:'Etapa de relevamiento',         imp:'baja', due:'2026-06-30', color:'#10B981', notas:'' },
+  { id:13, plat:'Plataforma - Contactos V&T',               type:'demo', c:'Creación de plataforma',        imp:'baja', due:'2026-06-30', color:'#3B82F6', notas:'' },
+  { id:14, plat:'Plataforma - Flujos procesales',            type:'fw',   c:'Subir al framework',            imp:'alta', due:'2026-07-06', color:'#6366F1', notas:'' },
+  { id:15, plat:'Plataforma - Tracker CID',                  type:'fw',   c:'Subir al framework y validación', imp:'alta', due:'2026-07-10', color:'#A855F7', notas:'' },
+  { id:16, plat:'CEJ mov. suprema',                          type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#BA7517', notas:'' },
+  { id:17, plat:'EJE',                                       type:'demo', c:'Sacar a plataforma + tokens IA', imp:'baja', due:'2026-07-13', color:'#D4537E', notas:'' },
+  { id:18, plat:'CEJ movimientos',                           type:'fw',   c:'Creación DWH',                  imp:null,   due:null,          color:'#888780', notas:'' },
 ];
-let nextId = 17;
+let nextId = 19;
 let editingTaskId = null;
 let editingPlatName = null;
 let activeFilter = 'all';
@@ -687,7 +692,29 @@ function exportExcel() {
   showToast('⬇ Excel exportado');
 }
 
-// ── Events ─────────────────────────────────────────────────────────────────
+// ── Publicar — genera index.html con datos actuales para subir a GitHub ────
+function publicar() {
+  syncPlatforms();
+  let src = document.documentElement.outerHTML;
+  // Inyectar datos actuales en el código fuente
+  src = src.replace(
+    /let platforms = \{[\s\S]*?\};/,
+    'let platforms = ' + JSON.stringify(platforms, null, 2) + ';'
+  );
+  src = src.replace(
+    /let tasks = \[[\s\S]*?\];/,
+    'let tasks = ' + JSON.stringify(tasks, null, 2) + ';'
+  );
+  src = src.replace(
+    /let nextId = \d+;/,
+    'let nextId = ' + nextId + ';'
+  );
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([src], { type: 'text/html' }));
+  a.download = 'index.html';
+  a.click();
+  showToast('📥 index.html descargado — súbelo a GitHub');
+}
 document.getElementById('task-modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closeTaskModal(); });
 document.getElementById('plat-modal-backdrop').addEventListener('click', function(e){ if(e.target===this) closePlatModal(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeTaskModal(); closePlatModal(); } });
