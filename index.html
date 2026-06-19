@@ -484,7 +484,15 @@ function renderGantt() {
   document.getElementById('gantt-body').innerHTML = html;
 }
 
-function renderAll() { renderKPIs(); renderGantt(); }
+function syncPlatforms() {
+  // Asegura que toda plataforma referenciada en tasks exista en platforms
+  tasks.forEach(t => {
+    if (!platforms[t.plat]) {
+      platforms[t.plat] = { due: null, color: t.color };
+    }
+  });
+}
+function renderAll() { syncPlatforms(); renderKPIs(); renderGantt(); }
 
 // ── Filter ─────────────────────────────────────────────────────────────────
 function setFilter(f, el) {
@@ -621,6 +629,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeTaskModal()
 
 // ── Init ───────────────────────────────────────────────────────────────────
 document.getElementById('footer-date').textContent = 'Actualizado: ' + fmtLong(TODAY_STR);
+syncPlatforms();
 renderKPIs();
 renderDateHeader();
 renderGantt();
