@@ -411,14 +411,31 @@ function renderGantt() {
     seen[t.plat].push(t);
   });
 
-  // Ordenar grupos por fecha de entrega del proyecto (más próxima primero, sin fecha al final)
+  // Ordenar: próxima fecha vigente por plataforma (demo → fw → proyecto), vencidas al final
+  function nextDue(platName) {
+    const today = parseDate(TODAY_STR);
+    const demo = tasks.filter(t=>t.plat===platName && t.type==='demo' && t.due)
+                      .map(t=>t.due).sort()[0];
+    const fw   = tasks.filter(t=>t.plat===platName && t.type==='fw'   && t.due)
+                      .map(t=>t.due).sort()[0];
+    const proj = platforms[platName]?.due;
+
+    // Devuelve la primera fecha que aún no ha vencido, en orden demo→fw→proyecto
+    for (const d of [demo, fw, proj]) {
+      if (d && parseDate(d) >= today) return d;
+    }
+    // Si todas vencieron, devuelve la más reciente (para ordenar vencidas entre sí)
+    const all = [demo, fw, proj].filter(Boolean).sort();
+    return all[all.length - 1] || null;
+  }
+
   groups.sort((a, b) => {
-    const dueA = platforms[a.plat]?.due;
-    const dueB = platforms[b.plat]?.due;
-    if (!dueA && !dueB) return 0;
-    if (!dueA) return 1;
-    if (!dueB) return -1;
-    return parseDate(dueA) - parseDate(dueB);
+    const dA = nextDue(a.plat);
+    const dB = nextDue(b.plat);
+    if (!dA && !dB) return 0;
+    if (!dA) return 1;
+    if (!dB) return -1;
+    return parseDate(dA) - parseDate(dB);
   });
 
   const marks = [];
